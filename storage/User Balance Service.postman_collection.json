@@ -1,0 +1,225 @@
+{
+	"info": {
+		"_postman_id": "7c90b71d-0e69-41e0-92c7-d612ce13104e",
+		"name": "User Balance Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24921328",
+		"_collection_link": "https://www.postman.com/serenitysun/workspace/nayasoru/collection/15905625-7c90b71d-0e69-41e0-92c7-d612ce13104e?action=share&creator=24921328&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Начисления средств на баланс",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 1,\n    \"amount\": 40000,\n    \"description\": \"на налоги\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/v1/user-balance/replenish?XDEBUG_SESSION=PHPSTORM",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"user-balance",
+						"replenish"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Списания средств с баланса",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 1,\n    \"amount\": 200,\n    \"description\": \"налоги где\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/v1/user-balance/reduce",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"user-balance",
+						"reduce"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION",
+							"value": "PHPSTORM",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Перевод средств от пользователя к пользователю",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fromUserId\": 2,\n    \"toUserId\": 3,\n    \"amount\": 200\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/v1/user-balance/transfer?XDEBUG_SESSION=PHPSTORM",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"user-balance",
+						"transfer"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получения текущего баланса пользователя",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/v1/user-balance/check?userId=1&currency=KZT",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"user-balance",
+						"check"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION",
+							"value": "PHPSTORM",
+							"disabled": true
+						},
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "currency",
+							"value": "KZT"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получения списка истории транзакций",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/v1/user-balance/history?userId=1&page=1&fromAmount=30000&toAmount=100000&sort=asc&transactionType=reduce",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"user-balance",
+						"history"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION",
+							"value": "PHPSTORM",
+							"disabled": true
+						},
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "fromAmount",
+							"value": "30000"
+						},
+						{
+							"key": "toAmount",
+							"value": "100000"
+						},
+						{
+							"key": "sort",
+							"value": "asc"
+						},
+						{
+							"key": "transactionType",
+							"value": "reduce"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
