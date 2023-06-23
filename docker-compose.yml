@@ -1,0 +1,34 @@
+version: '3'
+services:
+  php:
+    image: yiisoftware/yii2-php:8.2-fpm-nginx
+    container_name: api_balance
+    environment:
+      PHP_ENABLE_XDEBUG: 1
+    volumes:
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      - ./:/app:delegated
+    ports:
+      - '8000:80'
+    networks:
+        - balance_network
+  db:
+    image: mysql:latest
+    container_name: mysql_balance
+    environment:
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+    ports:
+      - '3306:3306'
+    networks:
+        - balance_network
+  redis:
+    image: redis:latest
+    container_name: redis_balance
+    ports:
+      - '6379:6379'
+    networks:
+        - balance_network
+networks:
+  balance_network:
+    driver: bridge
