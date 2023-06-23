@@ -73,5 +73,7 @@ readonly class BalanceModel
     {
         $this->reduce($fromUserId, $amount);
         $this->replenish($toUserId, $amount);
+
+        //здесь пока нет ошибки TransferBalanceException
     }
 }
